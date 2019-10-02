@@ -2,15 +2,6 @@
 
 > A basic tic tac toe game in js.
 
-### Setup Instructions
-```
-clone the repo
-cd tictactoe.js
-npm install
-
-```
-
-### Available scripts
-* npm start to start a dev server
-* npm deploy to deploy to gh=pages
+### Deployement URL
+> <a href="https://crycetruly.github.io/tictactoe.js/" title="Live site">https://crycetruly.github.io/tictactoe.js/</a>
 
