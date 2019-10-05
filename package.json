@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init:jasmine": "node node_modules/jasmine/bin/jasmine init",
+    "test": "jasmine"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jasmine": "^3.5.0"
+  }
 }
