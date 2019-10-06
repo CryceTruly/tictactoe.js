@@ -1,4 +1,4 @@
-### Tic Tac Toe [![Maintainability](https://api.codeclimate.com/v1/badges/c1361003543605a7a2ed/maintainability)](https://codeclimate.com/github/CryceTruly/tictactoe.js/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c1361003543605a7a2ed/test_coverage)](https://codeclimate.com/github/CryceTruly/tictactoe.js/test_coverage)
+### Tic Tac Toe [![Maintainability](https://api.codeclimate.com/v1/badges/c1361003543605a7a2ed/maintainability)](https://codeclimate.com/github/CryceTruly/tictactoe.js/maintainability)[![codecov](https://codecov.io/gh/CryceTruly/tictactoe.js/branch/create-game/graph/badge.svg)](https://codecov.io/gh/CryceTruly/tictactoe.js)
 > A basic tic tac toe game in js.
 
 ### Deployement URL
