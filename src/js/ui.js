@@ -1,16 +1,17 @@
-import Util from "./util";
-let util;
-
 export default class Ui {
-  initializeApp() {
-    util = new Util();
-    util.replayBtn.style.display = "none";
-    util.outputArea.style.display = "none";
+  constructor() {
+    this.spots = document.querySelectorAll(".box");
+    this.replayBtn = document.querySelector("#replay");
+    this.outputArea = document.querySelector(".result");
+  }
 
-    for (let i = 0; i < util.spots.length; i++) {
-      util.spots[i].innerText = "";
-      util.spots[i].style.removeProperty("background-color");
-      util.spots[i].addEventListener("click", turnClick, false);
-    }
+  updateSquare(square, player) {
+    document.getElementById(square).innerText = player;
+  }
+
+  declareWinner(who) {
+    this.outputArea.style.display = "block";
+    document.querySelector(".result .text").innerText = who;
+    this.replayBtn.style.display = "block";
   }
 }

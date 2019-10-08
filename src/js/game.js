@@ -1,4 +1,4 @@
-export default class Util {
+export default class Game {
   constructor() {
     this.board = Array.from(Array(9).keys());
     this.me = "o";
@@ -13,10 +13,6 @@ export default class Util {
       [0, 4, 8],
       [6, 4, 2]
     ];
-
-    this.spots = document.querySelectorAll(".box");
-    this.replayBtn = document.querySelector("#replay");
-    this.outputArea = document.querySelector(".result");
   }
 
   emptySquares() {
@@ -84,14 +80,7 @@ export default class Util {
     return moves[bestMove];
   }
 
-  turnClick(square) {
-    if (typeof this.board[square.target.id] == "number") {
-      turn(square.target.id, this.me);
-      if (!this.checkWin(util.board, this.me) && !checkTie())
-        this.turn(this.bestSpot(), this.computer);
-    }
-  }
   bestSpot() {
-    return this.minimax(util.board, util.computer).index;
+    return this.minimax(this.board, this.computer).index;
   }
 }

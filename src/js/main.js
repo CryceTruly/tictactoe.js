@@ -1,67 +1,60 @@
-import Util from "./util";
-let util;
-initializeApp();
+import Ui from "./ui";
+import Game from "./game";
 
-function initializeApp() {
-  util = new Util();
-  util.replayBtn.style.display = "none";
-  util.outputArea.style.display = "none";
+let ui;
+let game;
+window.addEventListener("DOMContentLoaded", event => {
+  ui = new Ui();
+  initializeApp();
+});
 
-  for (let i = 0; i < util.spots.length; i++) {
-    util.spots[i].innerText = "";
-    util.spots[i].style.removeProperty("background-color");
-    util.spots[i].addEventListener("click", turnClick, false);
+const initializeApp = () => {
+  game = new Game();
+  ui.replayBtn.style.display = "none";
+  ui.outputArea.style.display = "none";
+
+  for (let i = 0; i < ui.spots.length; i++) {
+    ui.spots[i].innerText = "";
+    ui.spots[i].style.removeProperty("background-color");
+    ui.spots[i].addEventListener("click", turnClick, false);
   }
-}
+};
 
 function turnClick(square) {
-  if (typeof util.board[square.target.id] == "number") {
-    turn(square.target.id, util.me);
-    if (!util.checkWin(util.board, util.me) && !checkTie())
-      turn(bestSpot(), util.computer);
+  if (typeof game.board[square.target.id] == "number") {
+    turn(square.target.id, game.me);
+    if (!game.checkWin(game.board, game.me) && !checkTie())
+      turn(game.bestSpot(), game.computer);
   }
 }
 
 const turn = (squareId, player) => {
-  util.board[squareId] = player;
-  document.getElementById(squareId).innerText = player;
-  let gameWon = util.checkWin(util.board, player);
+  game.board[squareId] = player;
+  ui.updateSquare(squareId, player);
+  let gameWon = game.checkWin(game.board, player);
   if (gameWon) gameOver(gameWon);
 };
 
 const gameOver = gameWon => {
-  for (let index of util.boxes[gameWon.index]) {
+  for (let index of game.boxes[gameWon.index]) {
     document.getElementById(index).style.backgroundColor =
-      gameWon.player == util.me ? "blue" : "red";
+      gameWon.player == game.me ? "blue" : "red";
   }
-  for (let i = 0; i < util.spots.length; i++) {
-    util.spots[i].removeEventListener("click", turnClick, false);
+  for (let i = 0; i < game.spots.length; i++) {
+    ui.spots[i].removeEventListener("click", turnClick, false);
   }
-  declareWinner(gameWon.player == util.me ? "You win!" : "You lose.");
-  util.replayBtn.style.display = "block";
-  util.replayBtn.addEventListener("click", () => initializeApp());
-};
-
-const declareWinner = who => {
-  util.outputArea.style.display = "block";
-  document.querySelector(".result .text").innerText = who;
-};
-
-const bestSpot = () => {
-  return util.minimax(util.board, util.computer).index;
+  ui.declareWinner(gameWon.player == game.me ? "You win!" : "You lose.");
+  ui.replayBtn.addEventListener("click", () => initializeApp());
 };
 
 const checkTie = () => {
-  if (util.emptySquares().length == 0) {
-    for (let i = 0; i < util.spots.length; i++) {
-      util.spots[i].style.backgroundColor = "green";
-      util.spots[i].removeEventListener("click", turnClick, false);
+  if (game.emptySquares().length == 0) {
+    for (let i = 0; i < ui.spots.length; i++) {
+      ui.spots[i].style.backgroundColor = "black";
+      ui.spots[i].removeEventListener("click", turnClick, false);
     }
-    declareWinner("Tie Game!");
-
-    util.replayBtn.style.display = "block";
-
-    util.replayBtn.addEventListener("click", () => initializeApp());
+    ui.declareWinner("Tie Game!");
+    ui.replayBtn.addEventListener("click", () => initializeApp());
     return true;
   }
   return false;
