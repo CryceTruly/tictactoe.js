@@ -26,14 +26,15 @@ const dom = new JSDOM(`
 	<button id="replay">Replay</button>
 </body>
 </html>`);
-global. document=dom.window.document;
+global.window = dom.window;
+global.document = dom.window.document;
 
-const all=require("../src/js/main");
+const all = require("../src/js/main");
 
 describe("A suite is just a function", function() {
-    var a;
-    it("and so is a spec", function() {
-      a = true;
-      expect(a).toBe(true);
-    });
+  var a;
+  it("and so is a spec", function() {
+    a = true;
+    expect(a).toBe(true);
   });
+});
