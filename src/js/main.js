@@ -1,5 +1,5 @@
-import Ui from "./ui";
-import Game from "./game";
+const Ui = require("./ui");
+const Game = require("./game");
 
 let ui;
 let game;

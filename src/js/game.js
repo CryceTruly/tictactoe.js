@@ -1,4 +1,4 @@
-export default class Game {
+class Game {
   constructor() {
     this.board = Array.from(Array(9).keys());
     this.me = "o";
@@ -84,3 +84,5 @@ export default class Game {
     return this.minimax(this.board, this.computer).index;
   }
 }
+
+module.exports = Game;

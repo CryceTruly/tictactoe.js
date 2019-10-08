@@ -1,4 +1,4 @@
-export default class Ui {
+class Ui {
   constructor() {
     this.spots = document.querySelectorAll(".box");
     this.replayBtn = document.querySelector("#replay");
@@ -15,3 +15,5 @@ export default class Ui {
     this.replayBtn.style.display = "block";
   }
 }
+
+module.exports = Ui;
